@@ -38,8 +38,8 @@ public final class Constants {
         public static final double HOLD_OPEN_POWER = 0.23;
 
         public static final double CLOSE_TIME = 0.7;
-        public static final double CLOSE_POWER = -0.15;
-        public static final double HOLD_CLOSED_POWER = -0.3;
+        public static final double CLOSE_POWER = -0.2;
+        public static final double HOLD_CLOSED_POWER = -0.45;
     }
 
     public static class Arm {

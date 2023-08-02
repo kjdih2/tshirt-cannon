@@ -17,20 +17,27 @@ public final class Autos {
     /** Example static factory for an autonomous command. */
     public static Command exampleAuto(DriveTrain driveTrain, Arm arm) {
         return new FunctionalCommand(
-                () -> arm.setPower(0.4),
+                () -> arm.setPower(0.45),
                 () -> {},
                 (Boolean interrupted) -> arm.setPower(0),
                 () -> false,
                 arm)
-            .withTimeout(0.5).andThen(new WaitCommand(3)).andThen(
+            .withTimeout(0.5).andThen(new FunctionalCommand(
+                () -> arm.setPower(-0.3),
+                () -> {},
+                (Boolean interrupted) -> arm.setPower(0),
+                () -> false,
+                arm)
+            .withTimeout(0.3)).andThen(new WaitCommand(3)).andThen(
                 new FunctionalCommand(
                 // () -> driveTrain.setPowers(new WheelSpeeds(1 * 0.6, 0.65 * 0.6)), // curves to left
-                () -> driveTrain.setPowers(new WheelSpeeds(-1 * 0.6, -0.57 * 0.6)),
+                () -> driveTrain.setPowers(new WheelSpeeds(-1 * 0.6, 0.57 * 0.6)),
                 // () -> driveTrain.setPowers(new WheelSpeeds(1 * 0.6, 0.4225 * 0.6)),
                 () -> {},
                 (Boolean interrupted) -> driveTrain.setPowers(new WheelSpeeds(0, 0)),
                 () -> false,
-                driveTrain).withTimeout(3.3)
+                // driveTrain).withTimeout(3.3)
+                driveTrain).withTimeout(2.7)
             );
             // .withTimeout(1.5);
     }

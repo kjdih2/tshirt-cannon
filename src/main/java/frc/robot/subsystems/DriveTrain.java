@@ -56,7 +56,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void arcadeDrive(double xSpeed, double zRotation, boolean squareInputs) {
-        setPowers(DifferentialDrive.arcadeDriveIK(xSpeed, zRotation, squareInputs));
+        var speeds = DifferentialDrive.arcadeDriveIK(xSpeed, zRotation, squareInputs);
+        setPowers(new WheelSpeeds(speeds.left, -0.57 * speeds.right));
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
