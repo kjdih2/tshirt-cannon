@@ -34,12 +34,12 @@ public class DriveTrain extends SubsystemBase {
         rightDrive2 = new WPI_VictorSPX(Constants.MotorID.RIGHT_DRIVE_2);
 
         rightDrive1.setInverted(false);
-        rightDrive2.setInverted(true);
+        rightDrive2.setInverted(false);
     
         leftDrive = new MotorControllerGroup(leftDrive1, leftDrive2);
         rightDrive = new MotorControllerGroup(rightDrive1, rightDrive2);
 
-        leftDrive.setInverted(true);
+        leftDrive.setInverted(false);
 
         differentialDrive = new DifferentialDrive(leftDrive, rightDrive);
         differentialDrive.setSafetyEnabled(false);
@@ -62,6 +62,10 @@ public class DriveTrain extends SubsystemBase {
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
         tankDrive(leftSpeed, rightSpeed, false);
+    }
+
+    public void tankDrive(double leftSpeed, double rightSpeed, double multiplier) {
+        tankDrive(leftSpeed * multiplier, rightSpeed * multiplier, false);
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squareInputs) {
